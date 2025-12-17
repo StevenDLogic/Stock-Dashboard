@@ -1,105 +1,114 @@
-# stocky-ahh 📈 🚀
+# Stock-Dashboard
 
-**stocky-ahh** is a modern, interactive Stock Trend Analyzer and Currency Converter application built with Next.js 16. It helps you figure out if you're going to the moon 🌕 or if you're holding the bag 🎒.
+A polished stock trend analyzer and currency converter built with Next.js 16, React 19, TypeScript, and Tailwind CSS.
 
-*Stocks only go up, right?* (Disclaimer: They don't.)
+Stock-Dashboard provides a unified experience for tracking stock quotes, viewing market sentiment, converting USD to THB, and obtaining AI-powered investment insights.
 
-![Project Banner](public/window.svg)
+## Features
 
-## ✨ Features (The Good Stuff)
+- Stock quote search for individual tickers
+- Real-time summary of market status and macro trend indicators
+- Interactive candlestick charts for price history
+- Stock news retrieval for company-specific events
+- USD to THB currency conversion
+- Local watchlist persistence
+- Search history persistence
+- AI analysis with OpenRouter for structured stock insights
+- Built-in API routes for data aggregation and caching
 
-*   **Stonk Analysis**: Visualize price movements with charts that look professional enough to impress your friends. 📉📈
-*   **Trend Indicators**: Instant vibes check on the market. Bullish? Bearish? Or just crickets? 🐂🐻
-*   **Market Overview**: Watch the global economy do its thing while you sip coffee.
-*   **Tendies Converter**: Seamlessly convert your USD gains to THB. (Currency Converter). 💰
-*   **Watchlist**: Keep an eye on your favorite tickers (and cry when you miss the dip).
-*   **AI Insights**: Robot powered analysis to tell you what's happening (because we sure don't know). 🤖
+## Tech Stack
 
-## 🛠️ Tech Stack (How we built this beast)
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Radix UI
+- OpenRouter API
+- Yahoo Finance, Alpha Vantage, Finnhub, ExchangeRate API
 
-*   **Framework**: [Next.js 16](https://nextjs.org/) (The bleeding edge, baby)
-*   **Language**: [TypeScript](https://www.typescriptlang.org/) (Because we hate runtime errors)
-*   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Make it pretty, fast)
-*   **Animation**: [Framer Motion](https://www.framer.com/motion/) (Smooth operator)
-*   **Icons**: [Lucide React](https://lucide.dev/)
-*   **UI Components**: [Radix UI](https://www.radix-ui.com/)
+## Repository Structure
 
-## 🚀 Getting Started
+- `src/app/`
+  - `page.tsx` - Main application page
+  - `layout.tsx` - Root layout and metadata
+  - `api/` - Server-side endpoints used by the app
+    - `stock/[symbol]/route.ts` - Stock quote data
+    - `stock/[symbol]/news/route.ts` - News data
+    - `stock/[symbol]/indicators/route.ts` - Technical indicators
+    - `exchange/route.ts` - USD/THB exchange rate
+    - `market/route.ts` - Market overview data
+    - `ai/route.ts` - AI analysis endpoint
+- `src/components/`
+  - `features/` - Domain features like stock analyzer, charts, converter
+  - `ui/` - Reusable UI components like buttons, cards, inputs
+- `src/hooks/` - Custom hooks for persistence and local state
+- `src/lib/` - Shared types, utilities, validation logic
+- `public/` - Static assets
 
-Follow these steps to get the project running before the market closes.
+## Environment Variables
 
-### Prerequisites
+Create a `.env.local` file from `.env.example` and provide the required keys:
 
-*   Node.js 18+ installed (You know the drill)
-*   npm or yarn package manager
+- `OPENROUTER_API_KEY` - OpenRouter API key for AI analysis
+- `ALPHA_VANTAGE_API_KEY` - Alpha Vantage API key for technical indicators and fundamentals
+- `FINNHUB_API_KEY` - Finnhub API key for news data
+- `NEXT_PUBLIC_APP_URL` - Optional public app URL for API referer headers
 
-### Installation
+## Setup
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/lynchzdev/stockify-clone.git
-    cd stockify-clone
-    ```
+1. Install dependencies
 
-2.  **Install dependencies** (This might take a while, go touch some grass)
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-
-3.  **Run the development server**
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
-
-4.  **Open the application**
-    Open [http://localhost:3000](http://localhost:3000) and witness greatness.
-
-## 📂 Project Structure
-
-```
-stockify-clone/
-├── src/
-│   ├── app/                 # Next.js App Router (The brain)
-│   │   ├── api/             # Backend API endpoints (Where the magic happens)
-│   │   └── page.tsx         # Main entry point
-│   ├── components/
-│   │   ├── features/        # The heavy lifters (Charts, Converters)
-│   │   └── ui/              # The pretty things (Buttons, Cards)
-│   ├── hooks/               # Custom hooks (Because DRY)
-│   └── lib/                 # Types & Utils (The boring but necessary stuff)
-├── public/                  # Assets
-└── ...config files          # Don't touch these unless you know what you're doing
+```bash
+npm install
 ```
 
-## 🔌 API Endpoints
+2. Run the development server
 
-The application includes several internal API routes:
+```bash
+npm run dev
+```
 
-*   `GET /api/stock/[symbol]`: Get the deets on a specific stock.
-*   `GET /api/exchange`: How much is a Dollar worth in Baht today?
-*   `GET /api/market`: General market vibes.
-*   `POST /api/ai`: Ask the AI oracle.
+3. Open the app
 
-## 🤝 Contributing
+```text
+http://localhost:3000
+```
 
-Found a bug? Want to add more memes? PRs are welcome!
+## Scripts
 
-1.  Fork it.
-2.  Branch it (`git checkout -b feature/DiamondHands`).
-3.  Commit it (`git commit -m 'Added more rockets'`).
-4.  Push it (`git push origin feature/DiamondHands`).
-5.  PR it.
+- `npm run dev` - Start the Next.js development server
+- `npm run build` - Create a production build
+- `npm run lint` - Run ESLint checks
+- `npm start` - Start the production server after build
 
-## 📄 License
+## API Routes
 
-This project is open source and available under the [MIT License](LICENSE). Do whatever you want with it, just don't blame me for your portfolio performance.
+### `GET /api/stock/[symbol]`
+Fetches stock quote data from Yahoo Finance with input validation and response caching.
 
----
+### `GET /api/exchange`
+Returns USD/THB exchange rate data.
 
-<p align="center">
-  Made with ☕, 😭, and code by <a href="https://github.com/lynchzdev">lynchz</a>
-</p>
+### `GET /api/market`
+Provides market overview and global sentiment information.
+
+### `POST /api/ai`
+Sends stock data to OpenRouter and returns structured AI analysis.
+
+## Notes
+
+- The app uses local storage for search history and watchlist persistence.
+- API routes centralize third-party calls and help avoid exposing API keys in the browser.
+- The project is designed for extension: add new indicators, new news sources, or new currency pairs.
+
+## Contribution
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+## License
+
+This project is provided under the MIT License.
